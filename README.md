@@ -68,7 +68,7 @@ File này chứa:
 - `SUPPORT_URL`
 - Nội dung các bước đăng nhập App Store
 
-Hãy thay `SUPPORT_URL` mẫu bằng kênh hỗ trợ chính thức trước khi triển khai.
+`SUPPORT_URL` hiện trỏ đến kênh hỗ trợ Messenger và có thể thay đổi trong `src/config/site.ts`.
 
 Quan trọng: mọi giá trị frontend đều công khai, kể cả mật khẩu hiển thị. Không xem các hằng số trong file này là bí mật an toàn.
 

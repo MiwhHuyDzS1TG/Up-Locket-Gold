@@ -9,8 +9,8 @@ export const YOUTUBE_URL = "https://www.youtube.com/watch?v=YGsyoKXzjSY";
 export const YOUTUBE_EMBED_URL =
   "https://www.youtube-nocookie.com/embed/YGsyoKXzjSY";
 
-// Thay URL mẫu này bằng kênh hỗ trợ chính thức trước khi triển khai công khai.
-export const SUPPORT_URL = "https://example.com/support";
+// Kênh Messenger dùng cho nút "Nhắn xin mã".
+export const SUPPORT_URL = "https://www.messenger.com/e2ee/t/6187918564643623";
 
 export const APP_STORE_INSTRUCTIONS = [
   "Mở ứng dụng Cài đặt trên iPhone.",
