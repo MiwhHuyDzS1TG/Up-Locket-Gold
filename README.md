@@ -4,7 +4,7 @@ Website hướng dẫn cài đặt Locket Gold bằng tiếng Việt, xây dựn
 
 ## Chức năng
 
-- Hướng dẫn ba bước theo timeline dọc.
+- Hướng dẫn bốn bước theo timeline dọc.
 - Thanh tiến trình sticky và lưu trạng thái hoàn thành bằng `localStorage`.
 - Sao chép email, mật khẩu và Module bằng Clipboard API, có fallback cho Safari iOS.
 - Hiện hoặc ẩn mật khẩu. Thông tin đăng nhập không được ghi vào `localStorage`.
@@ -110,4 +110,4 @@ public/
 - Chỉ hướng dẫn đăng nhập trong **Phương tiện & Mục mua**, không đăng xuất iCloud cá nhân.
 - Không yêu cầu người dùng cung cấp mật khẩu cá nhân hoặc mã xác minh tài khoản riêng.
 - Cấu hình DNS/VPN và Module có thể thay đổi cách thiết bị xử lý lưu lượng mạng. Người dùng chỉ nên tiếp tục khi hiểu rõ nguồn cung cấp và rủi ro.
-- Việc hoàn thành ba bước chỉ xác nhận đã xem hướng dẫn, không đảm bảo thuê bao đã được kích hoạt.
+- Việc hoàn thành bốn bước chỉ xác nhận đã xem hướng dẫn, không đảm bảo thuê bao đã được kích hoạt.

@@ -11,6 +11,8 @@ export const YOUTUBE_EMBED_URL =
 
 // Kênh Messenger dùng cho nút "Nhắn xin mã".
 export const SUPPORT_URL = "https://www.messenger.com/e2ee/t/6187918564643623";
+export const SHADOWROCKET_APP_STORE_URL =
+  "https://apps.apple.com/us/app/shadowrocket/id932747118";
 
 export const APP_STORE_INSTRUCTIONS = [
   "Mở ứng dụng Cài đặt trên iPhone.",

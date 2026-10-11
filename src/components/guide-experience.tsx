@@ -15,6 +15,7 @@ import {
   LockKeyhole,
   MessageCircle,
   PlayCircle,
+  Rocket,
   RefreshCcw,
   RotateCcw,
   ShieldAlert,
@@ -30,6 +31,7 @@ import {
   CONFIG_DOWNLOAD_URL,
   DNS_VIDEO_URL,
   MODULE_URL,
+  SHADOWROCKET_APP_STORE_URL,
   SUPPORT_URL,
   YOUTUBE_EMBED_URL,
   YOUTUBE_URL,
@@ -37,13 +39,13 @@ import {
 import { CopyField } from "./copy-field";
 import { StepCard } from "./step-card";
 
-const STORAGE_KEY = "locket-gold-guide-progress-v1";
+const STORAGE_KEY = "locket-gold-guide-progress-v2";
 
-type Progress = [boolean, boolean, boolean];
+type Progress = [boolean, boolean, boolean, boolean];
 type FileState = "checking" | "available" | "missing";
 type ToastState = { message: string; error: boolean } | null;
 
-const initialProgress: Progress = [false, false, false];
+const initialProgress: Progress = [false, false, false, false];
 
 function usePublicFile(url: string) {
   const [state, setState] = useState<FileState>("checking");
@@ -87,7 +89,7 @@ export function GuideExperience() {
         const parsed = JSON.parse(saved) as unknown;
         if (
           Array.isArray(parsed) &&
-          parsed.length === 3 &&
+          parsed.length === 4 &&
           parsed.every((item) => typeof item === "boolean")
         ) {
           restoredProgress = parsed as Progress;
@@ -111,13 +113,13 @@ export function GuideExperience() {
   }, [hydrated, progress]);
 
   const completedCount = progress.filter(Boolean).length;
-  const percent = Math.round((completedCount / 3) * 100);
-  const allComplete = completedCount === 3;
+  const percent = Math.round((completedCount / 4) * 100);
+  const allComplete = completedCount === 4;
 
   const progressLabel = useMemo(() => {
-    if (allComplete) return "Đã hoàn thành cả 3 bước";
+    if (allComplete) return "Đã hoàn thành cả 4 bước";
     if (completedCount === 0) return "Sẵn sàng bắt đầu";
-    return `Đã hoàn thành ${completedCount} trong 3 bước`;
+    return `Đã hoàn thành ${completedCount} trong 4 bước`;
   }, [allComplete, completedCount]);
 
   const updateStep = (index: number, value: boolean) => {
@@ -190,7 +192,7 @@ export function GuideExperience() {
               {progressLabel}
             </span>
             <h1>Cài đặt Locket Gold</h1>
-            <p>Làm theo 3 bước hướng dẫn bên dưới để hoàn tất.</p>
+            <p>Làm theo 4 bước hướng dẫn bên dưới để hoàn tất.</p>
 
             <div className="hero__actions">
               <button className="primary-button" type="button" onClick={() => scrollTo("step-1")}>
@@ -219,14 +221,14 @@ export function GuideExperience() {
             />
             <div className="hero__visual-note">
               <LockKeyhole size={18} />
-              <span>3 bước rõ ràng</span>
+              <span>4 bước rõ ràng</span>
             </div>
           </motion.div>
         </section>
 
-        <section className="journey page-width" aria-label="Ba bước hướng dẫn">
+        <section className="journey page-width" aria-label="Bốn bước hướng dẫn">
           <div className="journey__intro">
-            <h2>Một lộ trình, ba thao tác</h2>
+            <h2>Một lộ trình, bốn thao tác</h2>
             <p>Tiến trình được lưu trên chính thiết bị này. Thông tin đăng nhập không được lưu hoặc gửi đi.</p>
           </div>
 
@@ -313,13 +315,67 @@ export function GuideExperience() {
             <StepCard
               id="step-2"
               step={2}
+              title="Tải ứng dụng Shadowrocket"
+              description="Mở App Store và tải đúng ứng dụng Shadowrocket trước khi tiếp tục."
+              icon={<Rocket size={25} />}
+              complete={progress[1]}
+              completionLabel="Tôi đã tải Shadowrocket"
+              nextStepId="step-3"
+              onComplete={(value) => updateStep(1, value)}
+            >
+              <div className="shadowrocket-card">
+                <Image
+                  src="/assets/shadowrocket-icon.png"
+                  alt="Biểu tượng ứng dụng Shadowrocket"
+                  width={148}
+                  height={148}
+                  className="shadowrocket-card__icon"
+                />
+                <div className="shadowrocket-card__content">
+                  <span className="shadowrocket-card__eyebrow">TẢI TỪ APP STORE</span>
+                  <h3>Shadowrocket</h3>
+                  <p>Kiểm tra đúng tên và biểu tượng ứng dụng trước khi tải.</p>
+                  <a
+                    className="primary-button"
+                    href={SHADOWROCKET_APP_STORE_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Store size={19} />
+                    Mở App Store
+                    <ExternalLink size={16} />
+                  </a>
+                </div>
+              </div>
+
+              <aside className="critical-reminders" aria-label="Lưu ý quan trọng">
+                <div className="critical-reminders__heading">
+                  <ShieldAlert size={24} />
+                  <strong>LƯU Ý QUAN TRỌNG</strong>
+                </div>
+                <div className="critical-reminders__items">
+                  <p>
+                    <span>01</span>
+                    <strong>Đổi điện thoại hoặc xóa app Shadowrocket sẽ phải nâng lại ạ.</strong>
+                  </p>
+                  <p>
+                    <span>02</span>
+                    <strong>Làm xong vui lòng đăng xuất.</strong>
+                  </p>
+                </div>
+              </aside>
+            </StepCard>
+
+            <StepCard
+              id="step-3"
+              step={3}
               title="Tải và cài đặt cấu hình"
               description="Tải tệp cấu hình xuống iPhone và xem video hướng dẫn trước khi cài đặt."
               icon={<Wifi size={25} />}
-              complete={progress[1]}
+              complete={progress[2]}
               completionLabel="Tôi đã hoàn thành bước này"
-              nextStepId="step-3"
-              onComplete={(value) => updateStep(1, value)}
+              nextStepId="step-4"
+              onComplete={(value) => updateStep(2, value)}
             >
               <div className="download-row">
                 {configFile === "available" ? (
@@ -389,13 +445,13 @@ export function GuideExperience() {
             </StepCard>
 
             <StepCard
-              id="step-3"
-              step={3}
+              id="step-4"
+              step={4}
               title="Sao chép Module và xem hướng dẫn"
               icon={<LockKeyhole size={25} />}
-              complete={progress[2]}
+              complete={progress[3]}
               completionLabel="Tôi đã xem xong hướng dẫn"
-              onComplete={(value) => updateStep(2, value)}
+              onComplete={(value) => updateStep(3, value)}
             >
               <CopyField label="Liên kết Module" value={MODULE_URL} onCopied={showToast} />
               <a className="text-link" href={MODULE_URL} target="_blank" rel="noreferrer">
@@ -453,7 +509,7 @@ export function GuideExperience() {
                 <Check size={33} strokeWidth={3} />
               </motion.div>
               <div className="completion-card__copy">
-                <h2>Bạn đã hoàn thành 3 bước hướng dẫn!</h2>
+                <h2>Bạn đã hoàn thành 4 bước hướng dẫn!</h2>
                 <p>Đây là xác nhận bạn đã xem đủ nội dung, không phải xác nhận thuê bao đã được kích hoạt.</p>
               </div>
               <div className="completion-card__actions">

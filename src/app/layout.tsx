@@ -12,7 +12,7 @@ const beVietnamPro = Be_Vietnam_Pro({
 export const metadata: Metadata = {
   title: "Locket Gold | Hướng dẫn cài đặt cho iPhone",
   description:
-    "Hướng dẫn cài đặt Locket Gold theo ba bước rõ ràng, tối ưu cho iPhone.",
+    "Hướng dẫn cài đặt Locket Gold theo bốn bước rõ ràng, tối ưu cho iPhone.",
 };
 
 export const viewport: Viewport = {
